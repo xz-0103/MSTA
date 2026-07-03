@@ -214,7 +214,7 @@ def run_all_channels(
     summary_file = get_unique_filepath(
         os.path.join(
             f"new_{result_dir}",
-            f"test_SCTA_b{batch_size}_s{seed}_e{epochs}_tau{gumbel_tau}_cat.txt",
+            f"test_MSTA_b{batch_size}_s{seed}_e{epochs}_tau{gumbel_tau}_cat.txt",
         )
     )
     print(f"结果将写入：{summary_file}")
@@ -289,7 +289,7 @@ def run_all_channels(
             )
 
     with open(summary_file, "w", encoding="utf-8") as f:
-        f.write("模型：SCTA（时频并行单通道 EEG 分类）\n")
+        f.write("模型：MSTA（时频并行单通道 EEG 分类）\n")
         f.write(
             f"配置：分类数={n_class} | Epochs={epochs} | Batch={batch_size} | "
             f"Seed={seed} | Sample={sample_size} | d_model={d_model} | "
@@ -417,7 +417,7 @@ def run_all_channels(
             )
 
     with open(summary_file, "w", encoding="utf-8") as f:
-        f.write("模型：SCTA（时频并行单通道 EEG 分类）| 最终统计（按测试集准确率降序）\n")
+        f.write("模型：MSTA（时频并行单通道 EEG 分类）| 最终统计（按测试集准确率降序）\n")
         f.write(
             f"配置：分类数={n_class} | Epochs={epochs} | Batch={batch_size} | "
             f"Seed={seed} | SampleSize={sample_size} | K-Fold={num_folds}\n"
@@ -444,7 +444,7 @@ def run_all_channels(
     print(f"\n任务结束！结果已保存至: {summary_file}")
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="SCTA EEG Single Channel Classification")
+    parser = argparse.ArgumentParser(description="MSTA EEG Single Channel Classification")
     parser.add_argument("--dataset_name",  type=str,   default="stroop2")
     parser.add_argument("--sample_size",   type=int,   default=400)
     parser.add_argument("--fs",            type=int,   default=200)
@@ -533,7 +533,7 @@ if __name__ == "__main__":
         channel_ids = full_channel_ids
 
     print("=" * 60)
-    print(f"模型: SCTA  数据集: {args.dataset_name}")
+    print(f"模型: MSTA  数据集: {args.dataset_name}")
     print(f"路径: {ds_config['root_dir']}")
     print(
         f"参数: Epochs={args.epochs} | Batch={args.batch_size} | "
